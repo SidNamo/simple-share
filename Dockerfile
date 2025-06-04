@@ -13,7 +13,6 @@ RUN pip install --no-cache-dir uv
 # 1. pip 캐시 최적화를 위해 requirements.txt만 먼저 복사 후 설치
 COPY requirements.txt ./
 RUN uv pip install --system --no-cache-dir --upgrade pip \
-    && uv pip install --system -r requirements.txt\
     && uv sync --no-dev
 
 # 2. 전체 소스 복사 (entrypoint.sh, cron 등 포함)
