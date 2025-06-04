@@ -11,7 +11,6 @@ WORKDIR /app
 RUN pip install --no-cache-dir uv
 
 # 1. pip 캐시 최적화를 위해 requirements.txt만 먼저 복사 후 설치
-COPY requirements.txt ./
 RUN uv pip install --system --no-cache-dir --upgrade pip \
     && uv sync --no-dev
 
