@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>파일 업로드/다운로드</title>
+    <script src="/static/upload.js" defer></script>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        .file-item { display: flex; justify-content: space-between; margin-bottom: 0.5em; }
+        .file-item span { flex-grow: 1; cursor: pointer; }
+        .file-item button { margin-left: 1em; }
+        #drop-area {
+            border: 2px dashed #aaa;
+            padding: 2em;
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h2>📂 파일 업로드/다운로드</h2>
+    <div id="drop-area">여기로 파일을 드래그하세요</div>
+
+    <div id="file-list">
+        {% for file in files %}
+        <div class="file-item" data-filename="{{ file }}">
+            <span onclick="copyLink('{{ file }}')">
+                {{ file }}
+            </span>
+            <button onclick="deleteFile('{{ file | urlencode }}')">삭제</button>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
