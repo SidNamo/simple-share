@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     // 🔥 문서 전체에 드롭시 새 탭 열리는 현상 방지!
     window.addEventListener("dragover", function(e) {
@@ -39,22 +38,32 @@ document.addEventListener("DOMContentLoaded", () => {
         percentBar.style.borderRadius = '5px';
         percentBar.style.margin = '10px 0';
         progressDiv.appendChild(percentBar);
-        
+
         const percentFill = document.createElement('div');
         percentFill.style.height = '100%';
         percentFill.style.background = '#00aaff';
         percentFill.style.width = '0%';
         percentFill.style.borderRadius = '5px';
         percentBar.appendChild(percentFill);
-        
+
         const percentText = document.createElement('div');
         percentText.style.margin = '5px 0';
         percentText.textContent = "업로드 중... (0%)";
         progressDiv.appendChild(percentText);
-        
+
         let totalSent = 0;
         for (let i = 0; i < totalChunks; i++) {
-            // ...
+            const start = i * chunkSize;
+            const end = Math.min(file.size, start + chunkSize);
+            const chunk = file.slice(start, end);
+
+            let formData = new FormData();
+            formData.append('file', chunk, file.name);
+            formData.append('filename', file.name);
+            formData.append('chunk_index', i);
+            formData.append('total_chunks', totalChunks);
+            formData.append('upload_id', uploadId);
+
             await new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", "/upload-chunk");
