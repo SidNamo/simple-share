@@ -1,5 +1,13 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 🔥 문서 전체에 드롭시 새 탭 열리는 현상 방지!
+    window.addEventListener("dragover", function(e) {
+        e.preventDefault();
+    }, false);
+    window.addEventListener("drop", function(e) {
+        e.preventDefault();
+    }, false);
+
     const dropArea = document.getElementById("drop-area");
     const progressDiv = document.getElementById("progress");
 
