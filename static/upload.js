@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!file) return;
 
         // ======= Chunked Upload Start =======
-        const chunkSize = 5 * 1024 * 1024;
+        const chunkSize = 1 * 1024 * 1024;
         const totalChunks = Math.ceil(file.size / chunkSize);
         const uploadId = Math.random().toString(36).slice(2);
 
