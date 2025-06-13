@@ -6,7 +6,7 @@ echo "CURRENT_DOMAIN=${CURRENT_DOMAIN}" > /app/.env
 echo "OWNER_DOMAIN=${OWNER_DOMAIN}" >> /app/.env
 
 # 1. cron 데몬 시작 (백그라운드)
-#/usr/sbin/cron
+/usr/sbin/cron
 
 # 2. FastAPI(Uvicorn) 서버 실행 (포그라운드)
 /app/.venv/bin/uvicorn main:app --host 0.0.0.0 --port 80
